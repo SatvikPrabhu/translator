@@ -33,7 +33,7 @@ body {
 .translation-box {
     display: flex;
     justify-content: space-between;
-    gap: 40px;  /* Increased spacing between both text boxes */
+    gap: 40px;  
     margin-top: 15px;
 }
 
