@@ -1,89 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
-    background-color: #121212; 
-    color: #ffffff; 
-    font-family: 'Poppins', sans-serif; 
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 10px;
+  min-height: 100vh;
+  background-color: #121212;
+  color: #ffffff;
 }
 
 .title {
-    font-size: 36px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #00ffcc;
-    text-shadow: 2px 2px 10px rgba(0, 255, 204, 0.7);
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #00ffcc;
+  text-shadow: 2px 2px 10px rgba(0, 255, 204, 0.7);
 }
 
 .container {
-    background: rgba(20, 20, 20, 0.9); 
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.5); 
-    width: 60%;
-    max-width: 600px;
-    text-align: center;
+  max-width: 690px;
+  width: 100%;
+  padding: 30px;
+  background: rgba(20, 20, 20, 0.9);
+  border-radius: 12px;
+  box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.3);
 }
 
-.translation-box {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;  
-    margin-top: 15px;
+.wrapper {
+  border-radius: 10px;
+  border: 1px solid #00ffcc;
+  overflow: hidden;
 }
 
-.text-section {
-    width: 50%;
-    display: flex;
+.text-input {
+  display: flex;
+  border-bottom: 1px solid #00ffcc;
+}
+
+.text-input textarea {
+  height: 250px;
+  width: 100%;
+  background-color: #1a1a1a;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 12px;
+  resize: none;
+  outline: none;
+}
+
+.text-input .to-text {
+  border-left: 1px solid #00ffcc;
+}
+
+.text-input textarea::placeholder {
+  color: #b7b6b6;
+}
+
+ul.controls {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+}
+
+.controls .row {
+  display: flex;
+  align-items: center;
+}
+
+.controls .row select {
+  color: #00ffcc;
+  background-color: #1a1a1a;
+  border: 1px solid #00ffcc;
+  font-size: 16px;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+.controls .row .icons i {
+  color: #00ffcc;
+  font-size: 18px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.controls .exchange {
+  color: #00ffcc;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.container button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: #00ffcc;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.container button:hover {
+  background-color: #00cca3;
+}
+
+@media (max-width: 660px) {
+  .text-input {
     flex-direction: column;
-    align-items: center;
-}
+  }
 
-.lang-btn {
-    background-color: #00ffcc;
-    color: black;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 10px; 
-    font-size: 14px;
-}
+  .text-input .to-text {
+    border-left: none;
+    border-top: 1px solid #00ffcc;
+  }
 
-.lang-btn:hover {
-    background-color: #00cca3;
-}
+  .controls .row .icons {
+    display: none;
+  }
 
-textarea {
-    width: 100%;
-    height: 120px;
-    padding: 12px;
-    border-radius: 5px;
-    border: none;
-    resize: none;
-    background: #1a1a1a;
-    color: #ffffff;
+  .controls .exchange {
     font-size: 16px;
-}
+  }
 
-#translate-btn {
-    background-color: #00ffcc;
-    color: black;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+  .container button {
+    padding: 13px;
     font-size: 16px;
-    margin-top: 20px;
-}
-
-#translate-btn:hover {
-    background-color: #00cca3;
+  }
 }

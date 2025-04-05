@@ -1,31 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">  
     <title>Translator</title>
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1 class="title">Translator</h1>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  </head>
+  <body>
+    <h1 class="title">🌌 Translator</h1>
     <div class="container">
-        <button id="language-btn">Select Language</button>
-
-        <div class="translation-box">
-            <div class="left">
-                <h2>Enter Text</h2>
-                <textarea id="input-text" rows="6" cols="25"></textarea>
-            </div>
-            <div class="right">
-                <h2>Translated Text</h2>
-                <textarea id="translated-text" rows="6" cols="25" readonly></textarea>
-            </div>
+      <div class="wrapper">
+        <div class="text-input">
+          <textarea spellcheck="false" class="from-text" placeholder="Enter text"></textarea>
+          <textarea spellcheck="false" readonly disabled class="to-text" placeholder="Translation"></textarea>
         </div>
-
-        <button id="translate-btn">Translate</button>
+        <ul class="controls">
+          <li class="row from">
+            <div class="icons">
+              <i id="from" class="fas fa-copy"></i>
+            </div>
+            <select></select>
+          </li>
+          <li class="exchange"><i class="fas fa-exchange-alt"></i></li>
+          <li class="row to">
+            <select></select>
+            <div class="icons">
+              <i id="to" class="fas fa-copy"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <button>Translate Text</button>
     </div>
-
+    <script src="countries.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
