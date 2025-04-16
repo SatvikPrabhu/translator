@@ -1,63 +1,124 @@
-const fromText = document.querySelector(".from-text"),
-toText = document.querySelector(".to-text"),
-exchangeIcon = document.querySelector(".exchange"),
-selectTag = document.querySelectorAll("select"),
-icons = document.querySelectorAll(".row i"),
-translateBtn = document.querySelector("button");
+const translatorLink = document.getElementById("translatorLink"),
+      chatLink = document.getElementById("chatLink"),
+      translatorSection = document.getElementById("translator"),
+      chatSection = document.getElementById("chat");
 
-selectTag.forEach((tag, id) => {
-    for (let country_code in countries) {
-        let selected = id == 0
-            ? country_code == "en-GB" ? "selected" : ""
-            : country_code == "hi-IN" ? "selected" : "";
-        let option = `<option ${selected} value="${country_code}">${countries[country_code]}</option>`;
-        tag.insertAdjacentHTML("beforeend", option);
-    }
+translatorLink.addEventListener("click", () => {
+  translatorSection.style.display = "block";
+  chatSection.style.display = "none";
 });
 
+chatLink.addEventListener("click", () => {
+  translatorSection.style.display = "none";
+  chatSection.style.display = "block";
+});
+
+document.querySelectorAll(".lang-select").forEach(select => {
+  for (let code in countries) {
+    let option = `<option value="${code}">${countries[code]}</option>`;
+    select.insertAdjacentHTML("beforeend", option);
+  }
+});
+
+const fromText = document.querySelector(".from-text"),
+      toText = document.querySelector(".to-text"),
+      translateBtn = document.querySelector(".translate-btn"),
+      exchangeIcon = document.querySelector(".exchange"),
+      selectFrom = document.querySelector(".select-translator-from"),
+      selectTo = document.querySelector(".select-translator-to"),
+      icons = document.querySelectorAll(".row i");
+
+selectFrom.value = "en-GB";
+selectTo.value = "hi-IN";
+
 exchangeIcon.addEventListener("click", () => {
-    let tempText = fromText.value,
-        tempLang = selectTag[0].value;
-    fromText.value = toText.value;
-    toText.value = tempText;
-    selectTag[0].value = selectTag[1].value;
-    selectTag[1].value = tempLang;
+  let tempText = fromText.value,
+      tempLang = selectFrom.value;
+  fromText.value = toText.value;
+  toText.value = tempText;
+  selectFrom.value = selectTo.value;
+  selectTo.value = tempLang;
 });
 
 fromText.addEventListener("keyup", () => {
-    if (!fromText.value) {
-        toText.value = "";
-    }
+  if (!fromText.value) toText.value = "";
 });
 
 translateBtn.addEventListener("click", () => {
-    let text = fromText.value.trim(),
-        translateFrom = selectTag[0].value,
-        translateTo = selectTag[1].value;
-    if (!text) return;
-    toText.setAttribute("placeholder", "Translating...");
-    let apiUrl = `https://api.mymemory.translated.net/get?q=${text}&langpair=${translateFrom}|${translateTo}`;
-    fetch(apiUrl)
-        .then(res => res.json())
-        .then(data => {
-            toText.value = data.responseData.translatedText;
-            data.matches.forEach(match => {
-                if (match.id === 0) {
-                    toText.value = match.translation;
-                }
-            });
-            toText.setAttribute("placeholder", "Translation");
-        });
+  let text = fromText.value.trim();
+  if (!text) return;
+  toText.setAttribute("placeholder", "Translating...");
+  fetch(`https://api.mymemory.translated.net/get?q=${text}&langpair=${selectFrom.value}|${selectTo.value}`)
+    .then(res => res.json())
+    .then(data => {
+      toText.value = data.responseData.translatedText;
+      data.matches.forEach(match => {
+        if (match.id === 0) {
+          toText.value = match.translation;
+        }
+      });
+      toText.setAttribute("placeholder", "Translation");
+    })
+    .catch(() => {
+      toText.setAttribute("placeholder", "Error Translating...");
+    });
 });
 
 icons.forEach(icon => {
-    icon.addEventListener("click", ({ target }) => {
-        if (target.classList.contains("fa-copy")) {
-            if (target.id == "from") {
-                navigator.clipboard.writeText(fromText.value);
-            } else {
-                navigator.clipboard.writeText(toText.value);
-            }
-        }
+  icon.addEventListener("click", ({ target }) => {
+    if (target.classList.contains("fa-copy")) {
+      let textToCopy = target.id === "from" ? fromText.value : toText.value;
+      navigator.clipboard.writeText(textToCopy);
+    }
+  });
+});
+
+function addMessage(user, message, isUser1) {
+  const messageBox = document.createElement("div");
+  if (user === 'user1') {
+    messageBox.className = isUser1 ? 'user1-message' : 'user1-message-box2';
+  } else {
+    messageBox.className = isUser1 ? 'user2-message-box2' : 'user2-message';
+  }
+  messageBox.textContent = message;
+
+  const conversation = document.getElementById(`${user}-conversation`);
+  conversation.appendChild(messageBox);
+  conversation.scrollTop = conversation.scrollHeight;
+}
+
+function translateText(text, from, to) {
+  return fetch(`https://api.mymemory.translated.net/get?q=${text}&langpair=${from}|${to}`)
+    .then(res => res.json())
+    .then(data => {
+      const translatedText = data.responseData.translatedText;
+      return translatedText;
+    })
+    .catch(() => "Translation error");
+}
+
+const sendUser1 = document.getElementById("send-user1");
+const sendUser2 = document.getElementById("send-user2");
+
+const sendMessage = (user, inputText, targetLang, isUser1) => {
+  if (!inputText.trim()) return;
+  addMessage(user, inputText, isUser1);
+  translateText(inputText, user === "user1" ? "en" : "es", targetLang)
+    .then(translated => {
+      addMessage(user === "user1" ? "user2" : "user1", translated, !isUser1);
     });
+};
+
+sendUser1.addEventListener("click", () => {
+  const text = document.getElementById("user1-text").value.trim();
+  const targetLang = document.getElementById("user2-lang").value;
+  sendMessage("user1", text, targetLang, true);
+  document.getElementById("user1-text").value = "";
+});
+
+sendUser2.addEventListener("click", () => {
+  const text = document.getElementById("user2-text").value.trim();
+  const targetLang = document.getElementById("user1-lang").value;
+  sendMessage("user2", text, targetLang, false);
+  document.getElementById("user2-text").value = "";
 });
