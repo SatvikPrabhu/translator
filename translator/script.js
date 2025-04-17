@@ -100,25 +100,30 @@ function translateText(text, from, to) {
 const sendUser1 = document.getElementById("send-user1");
 const sendUser2 = document.getElementById("send-user2");
 
-const sendMessage = (user, inputText, targetLang, isUser1) => {
+const sendMessage = (user, inputText, sourceLang, targetLang, isUser1) => {
   if (!inputText.trim()) return;
+
   addMessage(user, inputText, isUser1);
-  translateText(inputText, user === "user1" ? "en" : "es", targetLang)
+
+  translateText(inputText, sourceLang, targetLang)
     .then(translated => {
       addMessage(user === "user1" ? "user2" : "user1", translated, !isUser1);
     });
 };
 
+
 sendUser1.addEventListener("click", () => {
   const text = document.getElementById("user1-text").value.trim();
+  const sourceLang = document.getElementById("user1-lang").value;
   const targetLang = document.getElementById("user2-lang").value;
-  sendMessage("user1", text, targetLang, true);
+  sendMessage("user1", text, sourceLang, targetLang, true);
   document.getElementById("user1-text").value = "";
 });
 
 sendUser2.addEventListener("click", () => {
   const text = document.getElementById("user2-text").value.trim();
+  const sourceLang = document.getElementById("user2-lang").value;
   const targetLang = document.getElementById("user1-lang").value;
-  sendMessage("user2", text, targetLang, false);
+  sendMessage("user2", text, sourceLang, targetLang, false);
   document.getElementById("user2-text").value = "";
 });
