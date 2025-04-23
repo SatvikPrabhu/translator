@@ -222,51 +222,6 @@ textarea {
   gap: 10px;
 }
 
-.user1-message-box2 {
-  background-color: #003322;
-  color: white;
-  padding: 10px;
-  border: 2px solid #00cc99;
-  border-radius: 20px 20px 0 20px;
-  max-width: 70%;
-  align-self: flex-start;
-  margin-right: auto;
-  box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-}
-
-.user2-message-box2 {
-  background-color: #331a00;
-  color: white;
-  padding: 10px;
-  border: 2px solid #ff7043;
-  border-radius: 20px 20px 20px 0;
-  max-width: 70%;
-  align-self: flex-end;
-  margin-left: auto;
-  box-shadow: 0 0 10px rgba(255, 112, 67, 0.5);
-}
-
-.user1-translated {
-  background-color: #003322;
-  color: white;
-  padding: 10px;
-  border: 2px solid #00cc99;
-  border-radius: 20px 20px 0 20px;
-  max-width: 70%;
-  align-self: flex-start;
-  margin-right: auto;
-}
-
-.user2-translated {
-  background-color: #331a00;
-  color: white;
-  padding: 10px;
-  border: 2px solid #ff7043;
-  border-radius: 20px 20px 20px 0;
-  max-width: 70%;
-  align-self: flex-end;
-  margin-left: auto;
-}
 
 textarea {
   width: 100%;
