@@ -45,19 +45,19 @@ nav a:hover {
 .title {
   text-align: center;
   font-size: 36px;
-  color: #00ffcc;
+  color: #02110e;
   animation: glowPulse 2s infinite ease-in-out;
 }
 
 @keyframes glowPulse {
   0% {
-    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc, 0 0 20px #00ffcc, 0 0 25px #00ffcc;
+    text-shadow: 0 0 5px #e8eeed, 0 0 10px #e8eeed, 0 0 15px #e8eeed, 0 0 20px #e8eeed, 0 0 25px #e8eeed;
   }
   50% {
-    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc, 0 0 40px #00ffcc, 0 0 50px #00ffcc;
+    text-shadow: 0 0 10px #e8eeed, 0 0 20px #e8eeed, 0 0 30px #e8eeed, 0 0 40px #e8eeed, 0 0 50px #e8eeed;
   }
   100% {
-    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc, 0 0 20px #00ffcc, 0 0 25px #00ffcc;
+    text-shadow: 0 0 5px #e8eeed, 0 0 10px #e8eeed, 0 0 15px #e8eeed , 0 0 20px #e8eeed, 0 0 25px #e8eeed;
   }
 }
 
@@ -252,7 +252,6 @@ textarea {
   transform: scale(1.1);
 }
 
-
 textarea:focus,
 select:focus,
 .enter-btn:focus,
@@ -280,4 +279,7 @@ nav {
   animation: neonGlow 12s ease-in-out infinite;
   background-size: 400% 400%;
 }
+
+
+
 
