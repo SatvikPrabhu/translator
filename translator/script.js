@@ -54,8 +54,6 @@ translateBtn.addEventListener("click", () => {
     return;
   }
 
-  translateBtn.disabled = true;
-
   if (fromLang === toLang) {
     alert("The selected languages are the same. Please choose different languages.");
     return;
