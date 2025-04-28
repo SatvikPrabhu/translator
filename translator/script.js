@@ -46,7 +46,21 @@ fromText.addEventListener("keyup", () => {
 
 translateBtn.addEventListener("click", () => {
   let text = fromText.value.trim();
-  if (!text) return;
+  let fromLang = selectFrom.value;
+  let toLang = selectTo.value;
+
+  if (!text) {
+    alert("Please enter text to translate!"); 
+    return;
+  }
+
+  translateBtn.disabled = true;
+
+  if (fromLang === toLang) {
+    alert("The selected languages are the same. Please choose different languages.");
+    return;
+  }
+
   toText.setAttribute("placeholder", "Translating...");
   fetch(`https://api.mymemory.translated.net/get?q=${text}&langpair=${selectFrom.value}|${selectTo.value}`)
     .then(res => res.json())
