@@ -1,0 +1,54 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+body{
+    background: url("https://wallpapers.com/images/hd/4k-minimalist-misty-mountain-pumpb5rzqjmu3rp5.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper{
+    background-color: #ffffff3b;
+    border-radius: 20px;
+    padding: 10px 20px;
+    width: 20%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.wrapper h3{
+    color: #e3e3e3c9;
+    font-size: 32px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 9%;
+}
+.wrapper .info{
+    border: none;
+    background-color: #ffffffb7;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+.click{
+    color: #585858;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffffffb7;
+    padding: 10px;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 3%;
+}
+.wrapper h4{
+    margin-top: 8%;
+    color: #ffffffc9;
+}
+.click a{
+    text-decoration: none;
+    color: #585858;
+}
